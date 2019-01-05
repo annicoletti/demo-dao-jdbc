@@ -24,7 +24,13 @@ public class Program2 {
         List<Department> list = departmentDao.findAll();
         for(Department d : list){
             System.out.println(d);
-        }
+        }   
+        
+        System.out.println("=== TEST 3: department deleteById ===");
+        System.out.print("Find department by id to will delete: ");
+        n = sc.nextInt(); 
+        departmentDao.deleteById(n);
+        System.out.println("Data deleted sussecfully!");
         
         
         sc.close();
