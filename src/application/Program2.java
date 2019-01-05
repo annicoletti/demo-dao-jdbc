@@ -32,7 +32,14 @@ public class Program2 {
         departmentDao.deleteById(n);
         System.out.println("Data deleted sussecfully!");
         
+        System.out.println("=== TEST 4: department insert ===");
+        System.out.print("Insert department's name: ");
+        String s = sc.next(); 
+        dep.setName(s);
+        departmentDao.insert(dep);
+        System.out.println("Data inserted sussecfully = " + dep.toString());
         
+       
         sc.close();
         
     }

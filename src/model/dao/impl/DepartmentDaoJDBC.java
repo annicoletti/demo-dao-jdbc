@@ -22,7 +22,32 @@ public class DepartmentDaoJDBC implements DepartmentDao {
 
     @Override
     public void insert(Department obj) {
-        
+        PreparedStatement ps = null;
+        try {
+            ps = conn.prepareStatement(
+                    "INSERT INTO department (Name) values (?);",
+                    Statement.RETURN_GENERATED_KEYS);
+            
+            ps.setString(1, obj.getName());
+            int row = ps.executeUpdate();
+            if(row > 0){
+                ResultSet rs = ps.getGeneratedKeys();
+                if(rs.next()){
+                    int id = rs.getInt(1);
+                    obj.setId(id);
+                }
+                DB.closeResultSet(rs);
+            }
+            else{
+                throw new DbException("Unexpected error to insert new department!");
+            }
+        } 
+        catch (SQLException e) {
+            throw new DbException( e.getMessage() );
+        }
+        finally{
+            DB.closeStatement(ps);
+        }
     }
 
     @Override
