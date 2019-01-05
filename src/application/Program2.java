@@ -39,8 +39,15 @@ public class Program2 {
         departmentDao.insert(dep);
         System.out.println("Data inserted sussecfully = " + dep.toString());
         
+        System.out.println("=== TEST 5: department update ===");
+        System.out.println("Insert Id's department: ");
+        n = sc.nextInt();
+        System.out.print("Insert new department's name: ");
+        s = sc.next();
+        dep.setId(n);
+        dep.setName(s);
+        departmentDao.update(dep);
        
-        sc.close();
-        
+        sc.close();        
     }
 }
